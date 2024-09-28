@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 """
-Jeu du nombre mystère
-
-Usage: nombre_mystere.py
+Filename: nombre_mystere.py
+Author: Nero
+Description: Jeu du nombre mystère
+Usage: python nombre_mystere.py
 """
 
 from random import randint
