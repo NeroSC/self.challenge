@@ -3,45 +3,9 @@
 """
 Filename: expedition_martienne.py
 Author: Nero
-Description
-Usage:
+Description: Trouve le chemin le plus court entre deux points à partir d'un fichier de ressources
+Usage: python expedition_martienne.py
 """
-
-# Commande :
-
-# 🔶 19. Expédition martienne !
-
-# *Allô Houston, on a un challenge.*
-
-# Sur la carte, vous avez en bleu les quatre sites d'atterrissage possibles,
-# en vert l'endroit précis où se trouve l'artefact et en blanc les différents points de passage.
-
-# Votre mission (si vous l'acceptez) est de déterminer quel site d'atterrissage
-# il faut sélectionner pour atteindre l'artefact en parcourant le moins de distance possible.
-
-# ## 🔹 Étapes
-
-# - Récupérer la liste des distances entre chaque point fourni en ressources.
-# - Déterminer le nombre de checkpoints et pour chacun d'eux, ses voisins directs avec leur distance.
-# - Pour chaque point d'atterrissage, calculer le chemin le plus court vers le point `Z`
-#       en indiquant la distance totale de km à parcourir.
-# - Annoncer le meilleur site d'atterrissage.
-
-# ## 🔹 Conditions
-# - L'affichage se fait via la console.
-# - Pour calculer le chemin le plus court, vous devez utiliser
-#   [l'algorithme de Dijkstra](https://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra).
-# - Votre algorithme devra prendre en input n'importe quel point de départ et d'arrivé du parcours
-#       pour déterminer le chemin le plus court (par exemple, le chemin le plus court entre `X` et `AC`).
-# - N'oubliez pas de gérer les inputs utilisateurs.
-
-# ## 🔹 Ressources
-
-# - Le fichier contenant les distances de chaque liaison ainsi que la carte de Mars avec les différents checkpoints.
-
-#############################################
-# Récupération de la liste des distances
-#############################################
 
 from enum import StrEnum
 from typing import Tuple
@@ -56,6 +20,9 @@ class Colors(StrEnum):
     RED = '\033[91m'
     END = '\033[0m'
 
+#############################################
+# Récupération de la liste des distances
+#############################################
 
 checkpoints = set()
 points_neighbors = {}
@@ -74,11 +41,11 @@ for distance in DISTANCES_DES_LIAISONS:
         checkpoints.add(distance[0][1])
 
 
+# checkpoints contient un set des points
 checkpoints = sorted(checkpoints)
+# points_neighbors contient un dictionnaire des points et des voisins associés
+# avec la distance entre le point courant chaque voisin.
 points_neighbors = dict(sorted(points_neighbors.items()))
-
-# print(checkpoints)
-# print(points_neighbors)
 
 
 def dijkstra(start_point: str, arrival_point: str = "Z") -> Tuple[list, float]:
